@@ -1,0 +1,13 @@
+{
+  "cash": 1000.0,
+  "shares": 0,
+  "entry": 0.0,
+  "realized": 0.0,
+  "history": [],
+  "enabled": true,
+  "last_signal": "PAUSE",
+  "last_price": 342.0,
+  "last_quote": "2026-10-15 20:00 UTC",
+  "last_reason": "Котировка устарела или имеет неверное время",
+  "last_update_id": 0
+}
