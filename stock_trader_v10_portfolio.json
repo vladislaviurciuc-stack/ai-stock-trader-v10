@@ -5,9 +5,9 @@
   "realized": 0.0,
   "history": [],
   "enabled": true,
-  "last_signal": "PAUSE",
-  "last_price": 342.0,
-  "last_quote": "2026-10-15 20:00 UTC",
-  "last_reason": "Котировка устарела или имеет неверное время",
+  "last_signal": "SELL",
+  "last_price": 342.6449890136719,
+  "last_quote": "2026-10-16 13:42 UTC",
+  "last_reason": "Цена ниже SMA20 или RSI >= 75",
   "last_update_id": 365230855
 }
