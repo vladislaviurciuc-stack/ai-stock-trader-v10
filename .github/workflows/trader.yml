@@ -1,39 +1,43 @@
-name: AI Stock Trader V10 Cloud
+name: AI Stock Trader V11 Cloud
+
 on:
   workflow_dispatch:
   schedule:
     - cron: '7,22,37,52 * * * *'
+
 permissions:
   contents: write
+
 concurrency:
-  group: ai-stock-trader-cloud
+  group: paper-trader-v11
   cancel-in-progress: false
+
 jobs:
   check:
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
       - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-      - uses: actions/setup-python@v5
+      - uses: actions/setup-python@v6
         with:
           python-version: '3.12'
-      - name: Install dependency
+      - name: Install dependencies
         run: python -m pip install requests
-      - name: Check AAPL and Telegram
+      - name: Check five stocks and Telegram
         env:
           TELEGRAM_TOKEN: ${{ secrets.TELEGRAM_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python stock_trader_cloud.py
-      - name: Save virtual portfolio
+        run: python stock_trader_v11.py
+      - name: Save V11 paper portfolio
+        if: always()
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          if [ -f stock_trader_v10_portfolio.json ]; then
-            git add stock_trader_v10_portfolio.json
+          if [ -f v11_portfolio.json ]; then
+            git add v11_portfolio.json
             if ! git diff --cached --quiet; then
-              git commit -m "Update paper portfolio [skip ci]"
-              git push
+              git commit -m "Update V11 paper portfolio [skip ci]"
+              git pull --rebase origin main
+              git push origin HEAD:main
             fi
           fi
